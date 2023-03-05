@@ -4,15 +4,57 @@ Library Device Detector with CodeIgniter 3 adalah sebuah library yang dapat digu
 
 ## Instalasi
 
-1. Clone repo ini ke komputer Anda.
-2. Pindah ke direktori repo yang baru dibuat.
-3. Salin direktori `device_detector` ke direktori `libraries` di proyek CodeIgniter Anda.
-4. Pastikan bahwa PHP 8 atau versi yang lebih baru telah terpasang pada server Anda.
+1. Clone / download repo ini ke komputer Anda.
+2. Pindah / copy file DeviceDetector.php ke direktori "application\libraries" proyek codeigniter anda.
+3. buka "config/autoload" dan tambahkan.
+<pre>
+$autoload['libraries'] = array('devicedetector');
+</pre>
 
 ## Penggunaan
 
-1. Load library `device_detector` di controller atau autoload di file `config/autoload.php` pada proyek Anda.
-2. Anda dapat mengakses fungsi `detect()` untuk mendapatkan informasi tentang perangkat yang digunakan oleh pengguna.
+1. Load library di controller anda seperti contoh dibawa ini :
+<pre>
+$this->load->library('DeviceDetector');
+$detector = new DeviceDetector();
+</pre>
+
+2. ambil tipe device yang digunakan user untuk mengakses web kita
+<pre>
+$device_type = $detector->get_device_type();
+</pre>
+
+3. cara untuk menggunakan
+<pre>
+if ($detector->is_mobile()) {
+	// yang ingin di tampilkan saat user menggunakan device mobile
+} elseif ($detector->is_tablet()) {
+	// yang ingin di tampilkan saat user menggunakan device Tablet
+} else {
+	// yang ingin di tampilkan saat user menggunakan device Dekstop
+}
+</pre>
+
+## Contoh Simpel
+
+contoh penggunaan basic pada class controller 
+<pre>
+public function index()
+{
+	$this->load->library('DeviceDetector');
+	$detector = new DeviceDetector();
+
+	$device_type = $detector->get_device_type();
+
+	if ($detector->is_mobile()) {
+		// yang ingin di tampilkan saat user menggunakan device mobile
+	} elseif ($detector->is_tablet()) {
+		// yang ingin di tampilkan saat user menggunakan device Tablet
+	} else {
+		// yang ingin di tampilkan saat user menggunakan device Dekstop
+	}
+}
+</pre>
 
 ## Dukungan
 
